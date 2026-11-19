@@ -65,3 +65,5 @@ The current homepage uses CSS placeholders so it runs before your generated imag
 - The visual styling is a starting scaffold, not a finished recreation of the reference.
 - Google Fonts are currently imported in CSS for convenience. We can move them to `next/font` during the performance pass.
 - Contact links currently use `mailto:hello@stelyx.com` as a placeholder. Replace this with your actual contact address later.
+
+# -STELYX
