@@ -1,4 +1,4 @@
-
+/*  */
 import Link from "next/link";
 import Image from "next/image";
 
@@ -11,7 +11,7 @@ export default function Home() {
         <Image
           // CHANGE THE IMAGE PATH BELOW TO USE A DIFFERENT PAPER ASSET
           src="/collage/nav_bar/nav.png"
-          
+
           alt=""
           fill
           priority
@@ -49,15 +49,14 @@ export default function Home() {
             Experiences.
           </h1>
           <p className="intro">
-            We create digital products, AI solutions and web experiences that
-            drive real impact.
+            From professional business websites to custom web applications and software, we build digital solutions tailored to what you actually need.
           </p>
           <div className="hero-actions">
             <a className="button-primary" href="#services">
               Explore our work <span aria-hidden="true">→</span>
             </a>
             <a className="text-link" href="mailto:hello@stelyx.com">
-              Book a call
+              Start your project
             </a>
           </div>
           <p className="trust-note">✳ &nbsp; Trusted by ambitious ideas and teams.</p>
@@ -118,11 +117,11 @@ export default function Home() {
         </div>
         <div className="service-grid">
           {[
-            ["▦", "Web Development", "Fast, responsive websites and web applications built for performance."],
-            ["✳", "AI Solutions", "Intelligent systems and automation that drive smarter decisions."],
-            ["◇", "Digital Products", "Scalable digital products designed for real users and impact."],
-            ["☁", "Cloud & DevOps", "Reliable infrastructure and delivery workflows that scale."],
-            ["⌁", "Data & Analytics", "Turning data into insights that help you grow faster."]
+            ["▦", "Business Website Development", "Fast, responsive websites crafted to establish credibility and convert."],
+            ["✳", "Custom Software Development", "Tailored software engineered to streamline your unique workflows."],
+            ["◇", "AI solutions", "Intelligent automation and smart tools that elevate performance."],
+            ["⌁", "Web Application Development", "Robust, interactive web apps built for seamless scalability."],
+            ["☁", "E-commerce Development", "High-converting online stores optimized for frictionless shopping."]
           ].map(([symbol, title, description]) => (
             <article className="service-card" key={title}>
               <span className="service-icon" aria-hidden="true">{symbol}</span>
@@ -153,11 +152,119 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="stages section" id="stages">
+        <div className="stages-content">
+          <div className="stages-heading">
+            <p className="eyebrow">TAILORED DIGITAL SOLUTIONS</p>
+            <h2>Built For Businesses<br /><span>At Different Stages</span></h2>
+            <p className="stages-highlight">
+              Your business isn&apos;t like everyone else&apos;s. Your software shouldn&apos;t be either.
+            </p>
+            <p className="stages-desc">
+              Whether taking your first steps or scaling operations, we design and build solutions crafted specifically for where your business stands today.
+            </p>
+          </div>
+          <div className="notepad-container">
+            <div className="ruled-notepad">
+              <div className="spiral-edge" aria-hidden="true">
+                {[...Array(8)].map((_, i) => (
+                  <span className="punch-hole" key={i}></span>
+                ))}
+              </div>
+              <div className="notepad-clip" aria-hidden="true">
+                <span className="clip-loop-outer"></span>
+                <span className="clip-loop-inner"></span>
+              </div>
+              <div className="notepad-tape-top" aria-hidden="true"></div>
+              <ol className="ruled-list">
+                {[
+                  "Small Businesses",
+                  "Startups",
+                  "Local Businesses",
+                  "Professionals",
+                  "Growing Companies",
+                  "Individuals & Creators"
+                ].map((title, index) => (
+                  <li className="ruled-item" key={title}>
+                    <span className="ruled-num">0{index + 1}</span>
+                    <span className="ruled-title">{title}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="work section" id="work">
+        <div className="work-header">
+          <div className="work-title-wrap">
+            <p className="eyebrow">SELECTED WORK</p>
+            <h2>Some Things We&apos;ve <span>Built</span></h2>
+          </div>
+          <Link className="all-work-btn" href="/work">
+            All work <span aria-hidden="true">→</span>
+          </Link>
+        </div>
+
+        <div className="work-clothesline-wrap">
+          <div className="clothesline-rope" aria-hidden="true"></div>
+          <div className="work-grid">
+            {[
+              {
+                category: "Business Website",
+                tag: "Template / Example structure",
+                title: "Project Showcase — Business Website",
+                description: "Replace this content with a real STELYX project. This template shows the structure a finished website case study should follow.",
+                slug: "/work/business-website"
+              },
+              {
+                category: "Custom Internal System",
+                tag: "Template / Example structure",
+                title: "Project Showcase — Custom Internal System",
+                description: "Replace this content with a real STELYX project. This template shows the structure a finished custom software case study should follow.",
+                slug: "/work/custom-internal-system"
+              },
+              {
+                category: "Online Store",
+                tag: "Template / Example structure",
+                title: "Project Showcase — Online Store",
+                description: "Replace this content with a real STELYX project. This template shows the structure a finished e-commerce case study should follow.",
+                slug: "/work/online-store"
+              }
+            ].map((item, index) => (
+              <div className={`work-hanger work-hanger-${index + 1}`} key={index}>
+                <div className="clothespin" aria-hidden="true">
+                  <span className="clothespin-wood"></span>
+                  <span className="clothespin-spring"></span>
+                </div>
+                <article className="work-card">
+                  <div className="work-card-top">
+                    <span className="work-tag">{item.tag}</span>
+                    <span className="work-num">0{index + 1}</span>
+                  </div>
+                  <div className="work-card-body">
+                    <span className="work-category">{item.category}</span>
+                    <h3>{item.title}</h3>
+                    <p>{item.description}</p>
+                  </div>
+                  <div className="work-card-foot">
+                    <Link className="work-link" href={item.slug}>
+                      View Case Study <span aria-hidden="true">↗</span>
+                    </Link>
+                  </div>
+                </article>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <footer className="footer">
         <div>
           <p className="eyebrow">GOOD WORK STARTS WITH A CONVERSATION</p>
-          <h2>Have an idea?</h2>
-          <p>Let&apos;s turn it into something real.</p>
+          <h2>Have an idea? <span>Let&apos;s build it.</span></h2>
+          <p>Tell us what you&apos;re trying to create, and we&apos;ll help you figure out the right way forward.</p>
         </div>
         <a className="footer-cta" href="mailto:hello@stelyx.com">
           Start a conversation <span aria-hidden="true">↗</span>
