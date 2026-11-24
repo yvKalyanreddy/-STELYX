@@ -5,40 +5,55 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main className="page">
+      
       <nav className="nav" aria-label="Main navigation">
+        <Link className="brand" href="/" aria-label="STELYX home">
+          <span className="brand-mark">✳</span>
+          <span>STELYX</span>
+        </Link>
 
-        {/* NAVBAR PAPER BACKGROUND */}
-        <Image
-          // CHANGE THE IMAGE PATH BELOW TO USE A DIFFERENT PAPER ASSET
-          src="/collage/nav_bar/nav.png"
-
-          alt=""
-          fill
-          priority
-          className="nav-paper"
-        />
-
-        {/* NAVBAR CONTENT - SITS ABOVE THE PAPER IMAGE */}
-        <div className="nav-content">
-          <Link className="brand" href="/" aria-label="STELYX home">
-            <span className="brand-mark">✳</span>
-            <span>STELYX</span>
-          </Link>
-
-          <div className="nav-links">
-            <a href="#work">Work</a>
-            <a href="#services">Services</a>
-            <a href="#about">About</a>
-            <a href="#insights">Insights</a>
-          </div>
-
-          <a className="nav-cta" href="mailto:hello@stelyx.com">
-            Let&apos;s Talk <span aria-hidden="true">↗</span>
-          </a>
+        <div className="nav-links">
+          <a href="#work">Work</a>
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#insights">Insights</a>
         </div>
+
+        <a
+          className="nav-cta"
+          href="mailto:hello@stelyx.com"
+          aria-label="Let's Talk"
+        >
+          <Image
+            src="/collage/nav_bar/lets_talk.png" // Change image path here if needed
+            alt=""
+            width={724}
+            height={344}
+            priority
+            className="nav-cta__image"
+          />
+
+          <span className="nav-cta__text">
+            Let's Talk <span aria-hidden="true">↗</span>
+          </span>
+        </a>
+
       </nav>
 
+
       <section className="hero" id="work">
+
+        {/* Static torn-paper background */}
+        <div className="hero-paper-bg" aria-hidden="true">
+          <Image
+            src="/collage/hero/hero_bg.png" // Change image name/path here
+            alt=""
+            fill
+            priority
+            className="hero-paper-bg__image"
+          />
+        </div>
+
         <div className="hero-copy">
           <p className="eyebrow">A CREATIVE TECHNOLOGY STUDIO</p>
           <h1>
@@ -87,24 +102,66 @@ export default function Home() {
         </div>
       </section>
 
+          
       <section className="journey section" id="about">
         <div className="section-heading">
           <p className="eyebrow">FROM FIRST THOUGHT TO FINISHED PRODUCT</p>
           <h2>Our Journey. <span>Your Success.</span></h2>
         </div>
+
         <div className="journey-grid">
           {[
-            ["01", "Discover", "We dive deep to understand your idea, audience and challenges.", "☼"],
-            ["02", "Define", "We research, analyse and define the right strategy and solution.", "⌕"],
-            ["03", "Design", "We shape intuitive experiences that are useful and beautiful.", "▧"],
-            ["04", "Develop", "We build scalable, secure and high-performance digital products.", "{ }"],
-            ["05", "Deliver", "We launch, optimise and scale for measurable impact.", "↗"]
-          ].map(([number, title, description, symbol]) => (
-            <article className="journey-item" key={number}>
-              <div className={`journey-scrap scrap-${number}`}>{symbol}</div>
-              <p className="step-number">{number}</p>
-              <h3>{title}</h3>
-              <p>{description}</p>
+            {
+              number: "01",
+              title: "Discover",
+              description:
+                "We dive deep to understand your idea, audience and challenges.",
+              image: "/collage/journey/discover.png",
+            },
+            {
+              number: "02",
+              title: "Define",
+              description:
+                "We research, analyse and define the right strategy and solution.",
+              image: "/collage/journey/define.png",
+            },
+            {
+              number: "03",
+              title: "Design",
+              description:
+                "We shape intuitive experiences that are useful and beautiful.",
+              image: "/collage/journey/design.png",
+            },
+            {
+              number: "04",
+              title: "Develop",
+              description:
+                "We build scalable, secure and high-performance digital products.",
+              image: "/collage/journey/develop.png",
+            },
+            {
+              number: "05",
+              title: "Deliver",
+              description:
+                "We launch, optimise and scale for measurable impact.",
+              image: "/collage/journey/deliver.png",
+            },
+          ].map((step) => (
+            <article className="journey-item" key={step.number}>
+              {/* PAPER IMAGE */}
+              <div className="journey-image">
+                <Image
+                  src={step.image}
+                  alt={`${step.title} stage`}
+                  fill
+                  sizes="(max-width: 768px) 80vw, 20vw"
+                  className="journey-image__asset"
+                />
+              </div>
+
+              <p className="step-number">{step.number}</p>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
             </article>
           ))}
         </div>
