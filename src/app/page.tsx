@@ -34,7 +34,7 @@ export default function Home() {
           />
 
           <span className="nav-cta__text">
-            Let's Talk <span aria-hidden="true">↗</span>
+            Let&apos;s Talk <span aria-hidden="true">↗</span>
           </span>
         </a>
 
