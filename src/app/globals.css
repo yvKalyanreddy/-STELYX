@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 :root {
+  /* Global paper palette */
   --paper: #EAE8E3;
   --paper-cool: #D4D3CE;
   --kraft: #E4D1B9;
@@ -10,40 +11,10 @@
   --muted: #5C5B57;
   --line: rgba(35, 35, 35, .18);
 
-  /* Navbar and hero controls */
+  /* Quick section sizing controls */
   --nav-height: 60px;
   --hero-height: 650px;
-
-  /* Spacing between navbar and hero */
   --nav-hero-gap: 0px;
-
-  /* HERO COLLAGE — POSITION + SIZE CONTROLS (desktop) */
-  --idea-x: -9%;
-  --idea-y: 27%;
-  --idea-width: 180px;
-  --idea-height: 145px;
-
-  --purple-x: -10%;
-  --purple-y: 75%;
-  --purple-width: 110px;
-  --purple-height: 90px;
-
-  --code-x: 13%;
-  --code-y: 8%;
-  --code-width: 67%;
-  --code-height: 360px;
-
-  --black-x: 60%;
-  --black-y: 76%;
-  --black-width: 210px;
-  --black-height: 125px;
-
-  /* FLOATING MOTION — distance and duration */
-  --note-float-distance: -10px;
-  --idea-float-duration: 5s;
-  --purple-float-duration: 3.5s;
-  --code-float-duration: 7.5s;
-  --black-float-duration: 4.5s;
 }
 
 
@@ -276,7 +247,7 @@ a {
 
 .idea-note {
   position: absolute;
-  z-index: 1; /* Behind the torn-paper overlay: visible through its hole. */
+  z-index: var(--idea-z); /* Layer controlled from :root. */
   top: var(--idea-y);
   left: var(--idea-x);
   width: var(--idea-width);
@@ -285,7 +256,7 @@ a {
   padding: 20px;
   background: var(--kraft);
   box-shadow: 2px 5px 9px #0002;
-  transform: rotate(-5deg);
+  transform: rotate(var(--idea-rotation));
   font: italic 15px Georgia, serif;
   display: flex;
   flex-direction: column;
@@ -305,7 +276,7 @@ a {
 
 .code-sheet {
   position: absolute;
-  z-index: 3; /* In front of the torn-paper background. */
+  z-index: var(--code-z); /* Layer controlled from :root. */
   left: var(--code-x);
   top: var(--code-y);
   width: var(--code-width);
@@ -314,7 +285,7 @@ a {
   background: #e9e5dc;
   border: 1px solid #aaa49a;
   box-shadow: 5px 8px 15px #0002;
-  transform: rotate(2deg);
+  transform: rotate(var(--code-rotation));
   animation: hero-note-float var(--code-float-duration) ease-in-out infinite -2s;
 }
 
@@ -332,7 +303,7 @@ a {
 
 .purple-scrap {
   position: absolute;
-  z-index: 1; /* Behind the torn-paper overlay: visible through its hole. */
+  z-index: var(--purple-z); /* Layer controlled from :root. */
   top: var(--purple-y);
   left: var(--purple-x);
   width: var(--purple-width);
@@ -345,13 +316,13 @@ a {
   color: #24212d;
   font: 24px 'DM Mono', monospace;
   box-shadow: 2px 5px 8px #0002;
-  transform: rotate(-8deg);
+  transform: rotate(var(--purple-rotation));
   animation: hero-note-float var(--purple-float-duration) ease-in-out infinite -1.1s;
 }
 
 .hero-caption {
   position: absolute;
-  z-index: 3; /* In front of the torn-paper background. */
+  z-index: var(--black-z); /* Layer controlled from :root. */
   left: var(--black-x);
   top: var(--black-y);
   width: var(--black-width);
@@ -360,7 +331,7 @@ a {
   background: var(--charcoal-paper);
   color: #f4f0e8;
   font: italic 17px/1.4 Georgia, serif;
-  transform: rotate(3deg);
+  transform: rotate(var(--black-rotation));
   box-shadow: 2px 5px 12px #0003;
   display: flex;
   align-items: center;
@@ -369,7 +340,7 @@ a {
 
 .hero-art-label {
   position: absolute;
-  z-index: 2;
+  z-index: var(--hero-label-z);
   right: 4%;
   top: 5%;
   font: 10px 'DM Mono', monospace;
@@ -1121,25 +1092,7 @@ a {
     margin: 12px 4px 0;
   }
 
-  :root {
-    --idea-x: 7%;
-    --idea-y: 3%;
-    --idea-width: 112px;
-    --idea-height: 90px;
-    --purple-x: 6%;
-    --purple-y: 66%;
-    --purple-width: 82px;
-    --purple-height: 68px;
-    --code-x: 17%;
-    --code-y: 22%;
-    --code-width: 77%;
-    --code-height: 220px;
-    --black-x: 68%;
-    --black-y: 76%;
-    --black-width: 145px;
-    --black-height: 90px;
-    --note-float-distance: -6px;
-  }
+
 
   .idea-note {
     padding: 12px;
@@ -1257,6 +1210,27 @@ a {
     flex-direction: column;
     gap: 16px;
   }
+
+  /* Mobile collage layout */
+  .hero-art { min-height: 340px; }
+  .hero-growth { top: 72%; left: 72%; width: 22%; }
+  .hero-laptop { top: 28%; left: 38%; width: 56%; }
+  .hero-ai { top: 5%; left: 4%; width: 25%; }
+  .hero-bot { top: 70%; left: 4%; width: 20%; }
+  .hero-build { top: 4%; left: 70%; width: 24%; }
+  .hero-cloud { top: 76%; left: 28%; width: 24%; }
+  .hero-connect { top: 56%; left: 72%; width: 24%; }
+  .hero-db { top: 45%; left: 4%; width: 23%; }
+  .hero-development { top: 34%; left: 78%; width: 19%; }
+  .hero-idea { top: 86%; left: 42%; width: 24%; }
+  .hero-impact { top: 12%; left: 34%; width: 30%; }
+
+  .idea-note { top: 3%; left: 7%; width: 112px; height: 90px; padding: 12px; font-size: 12px; }
+  .idea-note strong { font-size: 16px; }
+  .code-sheet { top: 22%; left: 17%; width: 77%; min-height: 220px; padding: 12px; }
+  .code-sheet pre { font-size: 8px; }
+  .purple-scrap { top: 66%; left: 6%; width: 82px; height: 68px; font-size: 19px; }
+  .hero-caption { top: 76%; left: 68%; width: 145px; min-height: 90px; padding: 13px 16px; font-size: 13px; }
 }
 
 
@@ -1383,7 +1357,7 @@ a {
   width: 100%;
   height: 100%;
 
-  z-index: 2;
+  z-index: 0;
   pointer-events: none;
   overflow: hidden;
 }
@@ -1457,7 +1431,7 @@ a {
 } */
 
 
-/* All four hero paper notes float independently without overwriting rotation. */
+/* Hero collage elements float independently without overwriting their rotation. */
 @keyframes hero-note-float {
   0%, 100% { translate: 0 0; }
   50% { translate: 0 var(--note-float-distance); }
@@ -1467,7 +1441,874 @@ a {
   .idea-note,
   .purple-scrap,
   .code-sheet,
-  .hero-caption {
+  .hero-caption,
+  .hero-growth,
+  .hero-laptop {
     animation: none;
+  }
+}
+
+
+
+/* GROWTH IMAGE */
+.hero-growth {
+  position: absolute;
+  z-index: var(--growth-z);
+
+  left: var(--growth-x);
+  top: var(--growth-y);
+
+  width: var(--growth-width);
+  height: auto;
+
+  object-fit: contain;
+  transform: rotate(var(--growth-rotation));
+
+  animation: hero-note-float
+    var(--growth-float-duration)
+    ease-in-out infinite -1.5s;
+
+  pointer-events: none;
+}
+
+/* LAPTOP IMAGE */
+.hero-laptop {
+  position: absolute;
+  z-index: var(--laptop-z);
+
+  left: var(--laptop-x);
+  top: var(--laptop-y);
+
+  width: var(--laptop-width);
+  height: auto;
+
+  object-fit: contain;
+  transform: rotate(var(--laptop-rotation));
+
+  animation: hero-note-float
+    var(--laptop-float-duration)
+    ease-in-out infinite -2.5s;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   HERO COLLAGE — EDIT EACH ELEMENT HERE
+   All positions are relative to the hero section.
+   Change top / left / width / rotation / z-index / float.
+   ========================================================= */
+
+/* Shared floating motion. Uses `translate` so rotation remains intact. */
+@keyframes hero-float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -10px; }
+}
+
+/* HERO ART GROUP — transparent wrapper; no dotted sheet */
+.hero-art {
+  position: relative;
+  z-index: 4;
+  min-height: 470px;
+  overflow: visible;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+/* ORANGE IDEA NOTE */
+.idea-note {
+  position: absolute;
+  top: 12%;
+  left: -1%;
+  width: 180px;
+  height: 145px;
+  z-index: 4;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  background: var(--kraft);
+  box-shadow: 2px 5px 9px #0002;
+  transform: rotate(-5deg);
+  font: italic 15px Georgia, serif;
+  animation: hero-float 5s ease-in-out infinite;
+}
+.idea-note strong { font-size: 20px; }
+.idea-doodle {
+  align-self: flex-end;
+  color: #68618E;
+  font-size: 24px;
+}
+
+/* CODE NOTE — position below the orange note */
+.code-sheet {
+  position: absolute;
+  top: 48%;
+  left: -12%;
+  width: 45%;
+  min-height: 120px;
+  z-index: 6;
+  padding: 18px 20px;
+  background: #e9e5dc;
+  border: 1px solid #aaa49a;
+  box-shadow: 5px 8px 15px #0002;
+  transform: rotate(2deg);
+  animation: hero-float 7.5s ease-in-out infinite -2s;
+}
+.sheet-label {
+  font: 9px 'DM Mono', monospace;
+  color: var(--muted);
+  letter-spacing: .1em;
+}
+.code-sheet pre {
+  white-space: pre-wrap;
+  font: 11px/1.8 'DM Mono', monospace;
+  color: #3c3942;
+}
+
+/* PURPLE </> NOTE */
+.purple-scrap {
+  position: absolute;
+  top: 75%;
+  left: -10%;
+  width: 110px;
+  height: 90px;
+  z-index: 7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  background: var(--lavender);
+  color: #24212d;
+  font: 24px 'DM Mono', monospace;
+  box-shadow: 2px 5px 8px #0002;
+  transform: rotate(-8deg);
+  animation: hero-float 3.5s ease-in-out infinite -1.1s;
+}
+
+/* BLACK CAPTION NOTE */
+.hero-caption {
+  position: absolute;
+  top: 76%;
+  left: 60%;
+  width: 210px;
+  min-height: 125px;
+  z-index: 8;
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  background: var(--charcoal-paper);
+  color: #f4f0e8;
+  font: italic 17px/1.4 Georgia, serif;
+  box-shadow: 2px 5px 12px #0003;
+  transform: rotate(3deg);
+  animation: hero-float 4.5s ease-in-out infinite -0.6s;
+}
+
+/* VERTICAL HERO LABEL */
+.hero-art-label {
+  position: absolute;
+  top: 5%;
+  right: 4%;
+  z-index: 9;
+  font: 10px 'DM Mono', monospace;
+  letter-spacing: .15em;
+  writing-mode: vertical-rl;
+}
+
+/* GROWTH IMAGE — sits above the laptop */
+.hero-growth {
+  position: absolute;
+  top: 68%;
+  left: 78%;
+  width: 12%;
+  height: auto;
+  z-index: 5;
+  object-fit: contain;
+  transform: rotate(-3deg);
+  animation: hero-float 6s ease-in-out infinite -1.5s;
+  pointer-events: none;
+}
+
+/* LAPTOP IMAGE — main visual, behind floating paper notes */
+.hero-laptop {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  width: 38%;
+  height: auto;
+  z-index: 3;
+  object-fit: contain;
+  transform: rotate(2deg);
+  animation: hero-float 7s ease-in-out infinite -2.5s;
+  pointer-events: none;
+}
+
+/* AI ILLUSTRATION */
+.hero-ai {
+  position: absolute;
+  top: 6%;
+  left: 4%;
+  width: 18%;
+  height: auto;
+  z-index: 4;
+  object-fit: contain;
+  transform: rotate(-4deg);
+  animation: hero-float 6.4s ease-in-out infinite -1s;
+  pointer-events: none;
+}
+
+/* BOT ILLUSTRATION */
+.hero-bot {
+  position: absolute;
+  top: 62%;
+  left: 4%;
+  width: 13%;
+  height: auto;
+  z-index: 5;
+  object-fit: contain;
+  transform: rotate(3deg);
+  animation: hero-float 5.2s ease-in-out infinite -2s;
+  pointer-events: none;
+}
+
+/* BUILD PAPER SCRAP */
+.hero-build {
+  position: absolute;
+  top: 2%;
+  left: 72%;
+  width: 15%;
+  height: auto;
+  z-index: 6;
+  object-fit: contain;
+  transform: rotate(-2deg);
+  animation: hero-float 5.8s ease-in-out infinite -0.7s;
+  pointer-events: none;
+}
+
+/* CLOUD / INFRASTRUCTURE ILLUSTRATION */
+.hero-cloud {
+  position: absolute;
+  top: 72%;
+  left: 28%;
+  width: 16%;
+  height: auto;
+  z-index: 4;
+  object-fit: contain;
+  transform: rotate(2deg);
+  animation: hero-float 6.8s ease-in-out infinite -1.8s;
+  pointer-events: none;
+}
+
+/* CONNECT PAPER SCRAP */
+.hero-connect {
+  position: absolute;
+  top: 48%;
+  left: 78%;
+  width: 15%;
+  height: auto;
+  z-index: 4;
+  object-fit: contain;
+  transform: rotate(2deg);
+  animation: hero-float 5.5s ease-in-out infinite -2.2s;
+  pointer-events: none;
+}
+
+/* DATABASE ILLUSTRATION */
+.hero-db {
+  position: absolute;
+  top: 34%;
+  left: 4%;
+  width: 16%;
+  height: auto;
+  z-index: 3;
+  object-fit: contain;
+  transform: rotate(-3deg);
+  animation: hero-float 7.2s ease-in-out infinite -1.4s;
+  pointer-events: none;
+}
+
+/* DEVELOPMENT ILLUSTRATION */
+.hero-development {
+  position: absolute;
+  top: 30%;
+  left: 82%;
+  width: 12%;
+  height: auto;
+  z-index: 5;
+  object-fit: contain;
+  transform: rotate(4deg);
+  animation: hero-float 5.9s ease-in-out infinite -2.8s;
+  pointer-events: none;
+}
+
+/* IDEA PAPER SCRAP */
+.hero-idea {
+  position: absolute;
+  top: 82%;
+  left: 48%;
+  width: 15%;
+  height: auto;
+  z-index: 6;
+  object-fit: contain;
+  transform: rotate(-2deg);
+  animation: hero-float 6.1s ease-in-out infinite -0.9s;
+  pointer-events: none;
+}
+
+/* IMPACT PAPER SCRAP */
+.hero-impact {
+  position: absolute;
+  top: 4%;
+  left: 28%;
+  width: 20%;
+  height: auto;
+  z-index: 5;
+  object-fit: contain;
+  transform: rotate(1deg);
+  animation: hero-float 6.6s ease-in-out infinite -1.7s;
+  pointer-events: none;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .idea-note,
+  .purple-scrap,
+  .code-sheet,
+  .hero-caption,
+  .hero-growth,
+  .hero-laptop,
+  .hero-ai,
+  .hero-bot,
+  .hero-build,
+  .hero-cloud,
+  .hero-connect,
+  .hero-db,
+  .hero-development,
+  .hero-idea,
+  .hero-impact {
+    animation: none;
+  }
+}
+
+/* =========================================================
+   STELYX — FINAL HERO COLLAGE LAYOUT
+   These rules intentionally come last so they override the
+   older experimental hero positioning rules above.
+
+   Quick global controls remain in :root:
+   --nav-height, --hero-height, --nav-hero-gap
+
+   Edit each element's position, width, rotation and float
+   duration in its own block below.
+   ========================================================= */
+
+/* The hero art is the positioning canvas for every collage item. */
+.hero-art {
+  position: relative;
+  z-index: 4;
+  min-height: 590px;
+  height: 100%;
+  overflow: visible;
+  isolation: isolate;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+/* Shared animation: translate does not overwrite each item's rotation. */
+@keyframes hero-float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -10px; }
+}
+
+/* ---------------------------------------------------------
+   MAIN LAPTOP — large central focal point
+   --------------------------------------------------------- */
+.hero-laptop {
+  position: absolute;
+  top: 15%;
+  left: 40%;
+  width: 40%;
+  height: auto;
+  z-index: 5;
+  object-fit: contain;
+  transform: rotate(2deg);
+  transform-origin: center;
+  animation: hero-float 7s ease-in-out infinite -2.5s;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------
+   LEFT-SIDE TECH ILLUSTRATION
+   Browser/code + AI chip/network artwork
+   --------------------------------------------------------- */
+.hero-ai {
+  position: absolute;
+  top: 28%;
+  left: 33%;
+  width: 14%;
+  height: auto;
+  z-index: 4;
+  object-fit: contain;
+  transform: rotate(-3deg);
+  transform-origin: center;
+  animation: hero-float 6.4s ease-in-out infinite -1s;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------
+   BOT ILLUSTRATION — small decorative element
+   --------------------------------------------------------- */
+.hero-bot {
+  position: absolute;
+  top: 4%;
+  left: 1%;
+  width: 17%;
+  height: auto;
+  z-index: 6;
+  object-fit: contain;
+  transform: rotate(-3deg);
+  transform-origin: center;
+  animation: hero-float 5.2s ease-in-out infinite -2s;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------
+   AI DEVELOPMENT NOTE — upper right
+   --------------------------------------------------------- */
+.hero-development {
+  position: absolute;
+  top: 20%;
+  left: 81%;
+  width: 8%;
+  height: auto;
+  z-index: 7;
+  object-fit: contain;
+  transform: rotate(3deg);
+  transform-origin: center;
+  animation: hero-float 5.9s ease-in-out infinite -2.8s;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------
+   CLOUD / INFRASTRUCTURE ILLUSTRATION — right side
+   --------------------------------------------------------- */
+.hero-cloud {
+  position: absolute;
+  top: 43%;
+  left: 80%;
+  width: 13%;
+  height: auto;
+  z-index: 7;
+  object-fit: contain;
+  transform: rotate(2deg);
+  transform-origin: center;
+  animation: hero-float 6.8s ease-in-out infinite -1.8s;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------
+   CONNECT ILLUSTRATION — lower right decoration
+   --------------------------------------------------------- */
+.hero-connect {
+  position: absolute;
+  top: 60%;
+  left: 30%;
+  width: 5%;
+  height: auto;
+  z-index: 3;
+  object-fit: contain;
+  transform: rotate(-8deg);
+  transform-origin: center;
+  animation: hero-float 5.5s ease-in-out infinite -2.2s;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------
+   DATABASE ILLUSTRATION — left / lower-left
+   --------------------------------------------------------- */
+.hero-db {
+  position: absolute;
+  top: 10%;
+  left: 28%;
+  width: 8%;
+  height: auto;
+  z-index: 3;
+  object-fit: contain;
+  transform: rotate(-4deg);
+  transform-origin: center;
+  animation: hero-float 7.2s ease-in-out infinite -1.4s;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------
+   GROWTH IMAGE — floating above the laptop
+   --------------------------------------------------------- */
+.hero-growth {
+  position: absolute;
+  top: 3%;
+  left: 40%;
+  width: 6%;
+  height: auto;
+  z-index: 8;
+  object-fit: contain;
+  transform: rotate(-5deg);
+  transform-origin: center;
+  animation: hero-float 6s ease-in-out infinite -1.5s;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------
+   BOTTOM PAPER SCRAPS — IDEA / BUILD / IMPACT
+   --------------------------------------------------------- */
+.hero-idea {
+  position: absolute;
+  top: 80%;
+  left: 38%;
+  width: 6%;
+  height: auto;
+  z-index: 8;
+  object-fit: contain;
+  transform: rotate(-5deg);
+  transform-origin: center;
+  animation: hero-float 6.1s ease-in-out infinite -0.9s;
+  pointer-events: none;
+}
+
+.hero-build {
+  position: absolute;
+  top: 82%;
+  left: 50%;
+  width: 10%;
+  height: auto;
+  z-index: 9;
+  object-fit: contain;
+  transform: rotate(0deg);
+  transform-origin: center;
+  animation: hero-float 5.8s ease-in-out infinite -0.7s;
+  pointer-events: none;
+}
+
+.hero-impact {
+  position: absolute;
+  top: 83%;
+  left: 62%;
+  width: 15%;
+  height: auto;
+  z-index: 4;
+  object-fit: contain;
+  transform: rotate(-5deg);
+  transform-origin: center;
+  animation: hero-float 6.6s ease-in-out infinite -1.7s;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------
+   CODE-GENERATED PAPER NOTES — independently editable
+   --------------------------------------------------------- */
+
+/* Orange "It starts with an idea" note */
+.idea-note {
+  position: absolute;
+  top: 75%;
+  left: -20%;
+  width: 180px;
+  height: 125px;
+  z-index: 10;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  background: var(--kraft);
+  box-shadow: 2px 5px 9px #0002;
+  transform: rotate(-5deg);
+  transform-origin: center;
+  font: italic 15px Georgia, serif;
+  animation: hero-float 5s ease-in-out infinite -1.2s;
+}
+
+.idea-note strong { font-size: 20px; }
+
+.idea-doodle {
+  align-self: flex-end;
+  color: #68618E;
+  font-size: 24px;
+}
+
+/* White generated code note */
+.code-sheet {
+  position: absolute;
+  top: 18%;
+  left: 37%;
+  width: 48%;
+  min-height: 260px;
+  z-index: 6;
+  padding: 18px 20px;
+  background: #e9e5dc;
+  border: 1px solid #aaa49a;
+  box-shadow: 5px 8px 15px #0002;
+  transform: rotate(1.5deg);
+  transform-origin: center;
+  animation: hero-float 7.5s ease-in-out infinite -2s;
+}
+
+.sheet-label {
+  font: 9px 'DM Mono', monospace;
+  color: var(--muted);
+  letter-spacing: .1em;
+}
+
+.code-sheet pre {
+  white-space: pre-wrap;
+  font: 11px/1.8 'DM Mono', monospace;
+  color: #3c3942;
+}
+
+/* Purple </> note */
+.purple-scrap {
+  position: absolute;
+  top: 67%;
+  left: 5%;
+  width: 110px;
+  height: 90px;
+  z-index: 11;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  background: var(--lavender);
+  color: #24212d;
+  font: 24px 'DM Mono', monospace;
+  box-shadow: 2px 5px 8px #0002;
+  transform: rotate(-8deg);
+  transform-origin: center;
+  animation: hero-float 3.5s ease-in-out infinite -1.1s;
+}
+
+/* Black "Crafted with code & creativity" note */
+.hero-caption {
+  position: absolute;
+  top: 72%;
+  left: 76%;
+  width: 210px;
+  min-height: 125px;
+  z-index: 12;
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  background: var(--charcoal-paper);
+  color: #f4f0e8;
+  font: italic 17px/1.4 Georgia, serif;
+  box-shadow: 2px 5px 12px #0003;
+  transform: rotate(3deg);
+  transform-origin: center;
+  animation: hero-float 4.5s ease-in-out infinite -0.6s;
+}
+
+/* Vertical label */
+.hero-art-label {
+  position: absolute;
+  top: 5%;
+  right: 4%;
+  z-index: 13;
+  font: 10px 'DM Mono', monospace;
+  letter-spacing: .15em;
+  writing-mode: vertical-rl;
+  pointer-events: none;
+}
+
+/* Tablet: keep the collage compact and prevent excessive overlap. */
+@media (max-width: 900px) {
+  .hero-art {
+    min-height: 540px;
+  }
+
+  .hero-laptop {
+    top: 18%;
+    left: 20%;
+    width: 65%;
+  }
+
+  .hero-ai {
+    top: 32%;
+    left: 0%;
+    width: 34%;
+  }
+
+  .hero-development {
+    top: 3%;
+    left: 76%;
+    width: 23%;
+  }
+
+  .hero-cloud {
+    top: 48%;
+    left: 75%;
+    width: 24%;
+  }
+
+  .hero-db {
+    top: 61%;
+    left: 2%;
+    width: 21%;
+  }
+
+  .hero-growth {
+    top: 0%;
+    left: 42%;
+    width: 19%;
+  }
+
+  .hero-idea { top: 84%; left: 10%; width: 23%; }
+  .hero-build { top: 85%; left: 38%; width: 24%; }
+  .hero-impact { top: 83%; left: 67%; width: 27%; }
+
+  .idea-note { top: 16%; left: 4%; }
+  .code-sheet { top: 22%; left: 34%; width: 51%; }
+  .purple-scrap { top: 69%; left: 4%; }
+  .hero-caption { top: 73%; left: 73%; width: 190px; }
+}
+
+/* Mobile: use a tighter two-dimensional collage rather than
+   shrinking the desktop positions proportionally. */
+@media (max-width: 650px) {
+  .hero-art {
+    min-height: 590px;
+    height: 590px;
+    margin: 12px 0 0;
+  }
+
+  .hero-laptop {
+    top: 25%;
+    left: 25%;
+    width: 70%;
+    transform: rotate(2deg);
+  }
+
+  .hero-ai {
+    top: 34%;
+    left: -2%;
+    width: 39%;
+  }
+
+  .hero-bot {
+    top: 4%;
+    left: 2%;
+    width: 23%;
+  }
+
+  .hero-development {
+    top: 3%;
+    left: 73%;
+    width: 26%;
+  }
+
+  .hero-cloud {
+    top: 57%;
+    left: 70%;
+    width: 29%;
+  }
+
+  .hero-connect {
+    top: 68%;
+    left: 68%;
+    width: 29%;
+  }
+
+  .hero-db {
+    top: 62%;
+    left: 0%;
+    width: 28%;
+  }
+
+  .hero-growth {
+    top: 15%;
+    left: 43%;
+    width: 24%;
+  }
+
+  .hero-idea {
+    top: 86%;
+    left: 5%;
+    width: 29%;
+  }
+
+  .hero-build {
+    top: 88%;
+    left: 36%;
+    width: 29%;
+  }
+
+  .hero-impact {
+    top: 86%;
+    left: 67%;
+    width: 32%;
+  }
+
+  .idea-note {
+    top: 18%;
+    left: 1%;
+    width: 112px;
+    height: 90px;
+    padding: 12px;
+    font-size: 12px;
+  }
+
+  .idea-note strong { font-size: 16px; }
+
+  .code-sheet {
+    top: 30%;
+    left: 25%;
+    width: 68%;
+    min-height: 175px;
+    padding: 12px;
+  }
+
+  .code-sheet pre { font-size: 8px; }
+
+  .purple-scrap {
+    top: 73%;
+    left: 7%;
+    width: 82px;
+    height: 68px;
+    font-size: 19px;
+  }
+
+  .hero-caption {
+    top: 75%;
+    left: 65%;
+    width: 135px;
+    min-height: 85px;
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  .hero-art-label {
+    top: 3%;
+    right: 1%;
+    font-size: 8px;
+  }
+}
+
+/* Respect reduced-motion preferences for every floating collage item. */
+@media (prefers-reduced-motion: reduce) {
+  .hero-growth,
+  .hero-laptop,
+  .hero-ai,
+  .hero-bot,
+  .hero-build,
+  .hero-cloud,
+  .hero-connect,
+  .hero-db,
+  .hero-development,
+  .hero-idea,
+  .hero-impact,
+  .idea-note,
+  .code-sheet,
+  .purple-scrap,
+  .hero-caption {
+    animation: none !important;
   }
 }

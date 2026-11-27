@@ -42,20 +42,22 @@ export default function Home() {
 
 
       <section className="hero" id="work">
-
         {/* Static torn-paper background */}
         <div className="hero-paper-bg" aria-hidden="true">
           <Image
-            src="/collage/hero/hero_bg.png" // Change image name/path here
+            src="/collage/hero/hero_bg.png"
             alt=""
             fill
             priority
+            sizes="100vw"
             className="hero-paper-bg__image"
           />
         </div>
 
+        {/* HERO TEXT */}
         <div className="hero-copy">
           <p className="eyebrow">A CREATIVE TECHNOLOGY STUDIO</p>
+
           <h1>
             Ideas into
             <br />
@@ -63,27 +65,158 @@ export default function Home() {
             <br />
             Experiences.
           </h1>
+
           <p className="intro">
-            From professional business websites to custom web applications and software, we build digital solutions tailored to what you actually need.
+            From professional business websites to custom web applications and
+            software, we build digital solutions tailored to what you actually
+            need.
           </p>
+
           <div className="hero-actions">
             <a className="button-primary" href="#services">
               Explore our work <span aria-hidden="true">→</span>
             </a>
+
             <a className="text-link" href="mailto:hello@stelyx.com">
               Start your project
             </a>
           </div>
-          <p className="trust-note">✳ &nbsp; Trusted by ambitious ideas and teams.</p>
+
+          <p className="trust-note">
+            ✳ &nbsp; Trusted by ambitious ideas and teams.
+          </p>
         </div>
 
-        <div className="hero-art" aria-label="Placeholder for the paper collage artwork">
-          <div className="paper-grid" />
+        {/* =========================================================
+            HERO COLLAGE ELEMENTS
+            Each element has its own CSS class.
+            Comment out an individual <Image> or note block to hide it.
+            ========================================================= */}
+
+        {/* GROWTH IMAGE — sits above the laptop */}
+        <Image
+          src="/collage/hero/note_hero.png"
+          alt="Hand-drawn growth chart"
+          width={851}
+          height={768}
+          priority
+          sizes="(max-width: 768px) 34vw, 22vw"
+          className="hero-growth"
+        />
+
+        {/* LAPTOP IMAGE — occupies the main code-sheet area */}
+        <Image
+          src="/collage/hero/laptop_hero.png"
+          alt="Laptop displaying code"
+          width={683}
+          height={576}
+          priority
+          sizes="(max-width: 768px) 55vw, 36vw"
+          className="hero-laptop"
+        />
+
+        {/* AI ILLUSTRATION */}
+        <Image
+          src="/collage/hero/ai_hero.png"
+          alt="Hand-drawn artificial intelligence illustration"
+          width={916}
+          height={826}
+          sizes="(max-width: 768px) 30vw, 18vw"
+          className="hero-ai"
+        />
+
+        {/* BOT ILLUSTRATION */}
+        <Image
+          src="/collage/hero/bot_hero.png"
+          alt="Hand-drawn friendly robot"
+          width={467}
+          height={474}
+          sizes="(max-width: 768px) 22vw, 13vw"
+          className="hero-bot"
+        />
+
+        {/* BUILD PAPER SCRAP */}
+        <Image
+          src="/collage/hero/build_hero.png"
+          alt="Torn paper scrap reading build"
+          width={448}
+          height={244}
+          sizes="(max-width: 768px) 24vw, 15vw"
+          className="hero-build"
+        />
+
+        {/* CLOUD / INFRASTRUCTURE ILLUSTRATION */}
+        <Image
+          src="/collage/hero/cloud_hero.png"
+          alt="Hand-drawn cloud and infrastructure illustration"
+          width={567}
+          height={457}
+          sizes="(max-width: 768px) 26vw, 16vw"
+          className="hero-cloud"
+        />
+
+        {/* CONNECT PAPER SCRAP */}
+        <Image
+          src="/collage/hero/connect_hero.png"
+          alt="Hand-drawn connection and communication diagram"
+          width={558}
+          height={511}
+          sizes="(max-width: 768px) 25vw, 15vw"
+          className="hero-connect"
+        />
+
+        {/* DATABASE ILLUSTRATION */}
+        <Image
+          src="/collage/hero/db_hero.png"
+          alt="Hand-drawn database illustration"
+          width={755}
+          height={824}
+          sizes="(max-width: 768px) 25vw, 16vw"
+          className="hero-db"
+        />
+
+        {/* DEVELOPMENT ILLUSTRATION */}
+        <Image
+          src="/collage/hero/development_hero.png"
+          alt="Hand-drawn development and coding illustration"
+          width={369}
+          height={401}
+          sizes="(max-width: 768px) 20vw, 12vw"
+          className="hero-development"
+        />
+
+        {/* IDEA PAPER SCRAP */}
+        <Image
+          src="/collage/hero/idea_hero.png"
+          alt="Torn paper scrap reading idea"
+          width={448}
+          height={241}
+          sizes="(max-width: 768px) 24vw, 15vw"
+          className="hero-idea"
+        />
+
+        {/* IMPACT PAPER SCRAP */}
+        <Image
+          src="/collage/hero/impact_hero.png"
+          alt="Torn paper scrap reading impact"
+          width={746}
+          height={244}
+          sizes="(max-width: 768px) 30vw, 20vw"
+          className="hero-impact"
+        />
+
+        {/* EXISTING PAPER NOTES */}
+        <div className="hero-art" aria-label="Decorative paper collage">
+          {/* The dotted white sheet has been removed. */}
+
+          {/* ORANGE IDEA NOTE */}
           <div className="idea-note">
             <span>It starts with</span>
             <strong>an idea.</strong>
             <span className="idea-doodle">✳</span>
           </div>
+
+          {/* CODE NOTE — keep this below the orange idea note */}
           <div className="code-sheet">
             <span className="sheet-label">STUDIO / EXPERIMENT 001</span>
             <pre>{`function build(idea) {
@@ -96,13 +229,21 @@ export default function Home() {
     .makeAnImpact();
 }`}</pre>
           </div>
+
+          {/* PURPLE CODE NOTE */}
           <div className="purple-scrap">&lt;/&gt;</div>
-          <div className="hero-caption">Crafted with<br />code & creativity</div>
+
+          {/* BLACK CAPTION NOTE */}
+          <div className="hero-caption">
+            Crafted with
+            <br />
+            code & creativity
+          </div>
+
           <div className="hero-art-label">IDEAS → EXPERIENCES</div>
         </div>
       </section>
 
-          
       <section className="journey section" id="about">
         <div className="section-heading">
           <p className="eyebrow">FROM FIRST THOUGHT TO FINISHED PRODUCT</p>
